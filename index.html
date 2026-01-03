@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Limitless Caps</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --brand-yellow: #FFD700;
+        --light-gray: #f2f2f2;
+        --dark-gray: #1a1a1a;
+        --deep-black: #000000;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      .font-anton { font-family: 'Anton', sans-serif; }
+      .font-roboto-mono { font-family: 'Roboto Mono', monospace; }
+
+      /* Gradient Morph Animation - Updated */
+      @keyframes morph-gradient {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      .animate-morph-gradient {
+        background: linear-gradient(270deg, var(--deep-black), var(--dark-gray), var(--deep-black));
+        background-size: 400% 400%;
+        animation: morph-gradient 15s ease infinite;
+      }
+      
+      /* Grain Overlay */
+      .grain-overlay::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"><filter id="f"><feTurbulence type="fractalNoise" baseFrequency=".7" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23f)"/></svg>');
+        opacity: 0.05;
+        pointer-events: none;
+        animation: grain 8s steps(10) infinite;
+      }
+      @keyframes grain {
+        0%, 100% { transform: translate(0, 0); }
+        10% { transform: translate(-5%, -10%); }
+        20% { transform: translate(-15%, 5%); }
+        30% { transform: translate(7%, -25%); }
+        40% { transform: translate(-5%, 25%); }
+        50% { transform: translate(-15%, 10%); }
+        60% { transform: translate(15%, 0%); }
+        70% { transform: translate(0%, 15%); }
+        80% { transform: translate(3%, 35%); }
+        90% { transform: translate(-10%, 10%); }
+      }
+
+      /* Text Gradient Animation - Updated */
+      .animated-text-gradient {
+        background: linear-gradient(90deg, var(--light-gray), var(--brand-yellow), var(--light-gray));
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: text-shine 4s linear infinite;
+      }
+      @keyframes text-shine {
+        to {
+          background-position: 200% center;
+        }
+      }
+
+      /* CTA Button Glow Pulse - Updated */
+      @keyframes cta-glow {
+        0%, 100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
+        50% { box-shadow: 0 0 35px rgba(255, 215, 0, 0.6); }
+      }
+      .animate-cta-glow {
+        animation: cta-glow 3s ease-in-out infinite;
+      }
+
+      /* Bounce animation for Cap */
+      @keyframes float-bounce {
+        0%, 100% { transform: translateY(0px) rotate3d(0, 1, 0, var(--cap-rotate-y, 0deg)) rotate3d(1, 0, 0, var(--cap-rotate-x, 0deg)); }
+        50% { transform: translateY(-20px) rotate3d(0, 1, 0, var(--cap-rotate-y, 0deg)) rotate3d(1, 0, 0, var(--cap-rotate-x, 0deg)); }
+      }
+      .animate-float-bounce {
+        animation: float-bounce 6s ease-in-out infinite;
+      }
+      
+      /* Underline Draw */
+      @keyframes draw-underline {
+        from { transform: scaleX(0); }
+        to { transform: scaleX(1); }
+      }
+      
+      /* Icon Draw */
+      @keyframes draw-icon {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+      .animate-draw-icon {
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 1000;
+        animation: draw-icon 2s ease-in-out forwards;
+      }
+
+      /* Particle Burst */
+      @keyframes particle-burst {
+        0% {
+          transform: translate(0, 0) scale(1);
+          opacity: 1;
+        }
+        100% {
+          transform: translate(var(--end-x), var(--end-y)) scale(0);
+          opacity: 0;
+        }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react-intersection-observer": "https://esm.sh/react-intersection-observer@^10.0.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-black text-white overflow-x-hidden">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
